@@ -45,38 +45,51 @@
         <hr>
         <!-- Second Navbar -->
         <nav class="navbar navbar-expand-lg">
-            <ul class="navbar-nav m-auto mb-2 mb-lg-0 container-fluid">
+            <ul class="navbar-nav m-auto mb-2 mb-lg-0 container-fluid" id="news">
                 <li class="nav-item">
-                    <a class="nav-link text-secondary text-semibold" aria-current="page" href="#">Home</a>
+                    <a class="nav-link text-secondary text-semibold remove-class" aria-current="page" href="#"
+                        onclick="loadCategory('01')">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-secondary text-semibold" href="#">Breaking News</a>
+                    <a class="nav-link text-secondary text-semibold remove-class" href="#"
+                        onclick="loadCategory('01')">Breaking
+                        News</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-secondary text-semibold" href="#">Regular News</a>
+                    <a class="nav-link text-secondary text-semibold remove-class" href="#"
+                        onclick="loadCategory('02')">Regular
+                        News</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-secondary text-semibold" href="#">International News</a>
+                    <a class="nav-link text-secondary text-semibold remove-class" href="#"
+                        onclick="loadCategory('03')">International
+                        News</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-secondary text-semibold" href="#">Sports</a>
+                    <a class="nav-link text-secondary text-semibold remove-class" href="#"
+                        onclick="loadCategory('04')">Sports</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-secondary text-semibold" href="#">Entertainment</a>
+                    <a class="nav-link text-secondary text-semibold remove-class" href="#"
+                        onclick="loadCategory('05')">Entertainment</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-secondary text-semibold" href="#">Culture</a>
+                    <a class="nav-link text-secondary text-semibold remove-class" href="#"
+                        onclick="loadCategory('06')">Culture</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-secondary text-semibold" href="#">Arts</a>
+                    <a class="nav-link text-secondary text-semibold remove-class" href="#"
+                        onclick="loadCategory('07')">Arts</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-secondary text-semibold" href="#">All News</a>
+                    <a class="nav-link text-secondary text-semibold remove-class" href="#"
+                        onclick="loadCategory('08')">All News</a>
                 </li>
             </ul>
         </nav>
         <!-- Item Found -->
-        <div class="p-2 rounded bg-light text-info text-semibold fs-5 mt-4">4 Items Found For Category Entertainment
+        <div class="p-2 rounded bg-light text-info fw-semibold fs-5 mt-4" id="found-news">0 News Found For Category
+            Entertainment
         </div>
         <!-- Sort Section -->
         <section class="d-flex flex-column flex-sm-column flex-md-row mt-5">
@@ -96,10 +109,17 @@
         </section>
     </header>
 
+    <!-- Main -->
+    <main class="mt-5 container" id="main">
+
+    </main>
+
     <!-- Bootstrap Javascript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
         crossorigin="anonymous"></script>
+    <!-- Javascript -->
+    <script src="js/script.js"></script>
 </body>
 
 </html>
