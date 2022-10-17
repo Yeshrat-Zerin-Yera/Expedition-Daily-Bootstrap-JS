@@ -47,8 +47,8 @@
         <nav class="navbar navbar-expand-lg">
             <ul class="navbar-nav m-auto mb-2 mb-lg-0 container-fluid" id="news">
                 <li class="nav-item">
-                    <a class="nav-link text-secondary text-semibold remove-class" aria-current="page" href="#"
-                        onclick="loadCategory('01')">Home</a>
+                    <a class="nav-link text-secondary text-semibold remove-class" aria-current="page"
+                        href="index.html">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-secondary text-semibold remove-class" href="#"
@@ -111,7 +111,14 @@
 
     <!-- Main -->
     <main class="mt-5 container" id="main">
-
+        <!-- Spinner Section -->
+        <section>
+            <div style="height: 100px;" class="d-flex justify-content-center align-items-center d-none" id="spinner">
+                <div class="spinner-border text-info" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- Footer -->
