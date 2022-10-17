@@ -44,7 +44,24 @@ const showCategory = category => {
                                 <i class="fa-solid fa-star-half-stroke fs-5 text-secondary"></i>
                             </div>
                             <div class="mt-4">
-                                <i class="fa-solid fa-arrow-right fs-2 fw-bolder text-info"></i>
+                                <button class="btn border-0"
+                                data-bs-toggle="modal" data-bs-target="#loadCategoryDetailsModal" onclick="loadCategoryDetails('${news._id}')"><i class="fa-solid fa-arrow-right fs-2 text-info fw-semibold"></i></button>
+                                <div class="modal fade" id="loadCategoryDetailsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                                        <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            ...
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-info text-white fw-semibold" data-bs-dismiss="modal">Close</button>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -67,14 +84,29 @@ document.getElementById('news').addEventListener('click', function (event) {
     document.getElementById('news').classList.remove('bg-info', 'text-white', 'rounded');
 });
 
-// Spinner
+// Toogle Spinner Function
 const toogleSpinner = isLoading => {
+    const spinner = document.getElementById('spinner');
     if (isLoading) {
-        document.getElementById('spinner').classList.remove('d-none');
+        spinner.classList.remove('d-none');
     }
     else {
-        document.getElementById('spinner').classList.add('d-none');
+        spinner.classList.add('d-none');
     }
 };
 
-// loadCategory('01');
+loadCategory('01');
+
+// Load Category Details
+const loadCategoryDetails = id => {
+    fetch(`https://openapi.programming-hero.com/api/news/${id}`)
+        .then(res => res.json())
+        .then(data => showCategoryDetails(data.data[0]))
+        .catch(error => console.log(error))
+};
+
+// Show Category Details
+const showCategoryDetails = category => {
+    const id = category.rating;
+    console.log(id);
+};
