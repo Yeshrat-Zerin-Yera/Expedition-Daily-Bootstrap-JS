@@ -1,16 +1,43 @@
+// Load Categories
+const loadCategories = () => {
+    fetch('https://openapi.programming-hero.com/api/news/categories')
+        .then(res => res.json())
+        .then(data => showCategories(data.data.news_category))
+        .catch(error => console.log(error))
+};
+
+// Load Categories Function Call
+loadCategories();
+
+// Show Categories
+const showCategories = categories => {
+    const newsContainer = document.getElementById('news');
+    categories.forEach(news => {
+        const li = document.createElement('li');
+        li.classList.add('nav-item');
+        li.innerHTML = `
+        <a class="nav-link text-secondary text-semibold remove-class" aria-current="page" href="#"
+        onclick="loadCategory('${news.category_id}','${news.category_name}')">${news.category_name}</a>
+        `;
+        newsContainer.appendChild(li);
+    });
+};
+
 // Load Category
-const loadCategory = id => {
+const loadCategory = (id, categoryName) => {
     fetch(`https://openapi.programming-hero.com/api/news/category/${id}`)
         .then(res => res.json())
-        .then(data => showCategory(data.data))
+        .then(data => showCategory(data.data, categoryName))
         .catch(error => console.log(error))
 };
 
 // Show Category
-const showCategory = category => {
+const showCategory = (category, categoryName) => {
+    // Item Found
+    document.getElementById('found-news').innerText = `${category.length} News Found For ${categoryName}`;
+    // Show Categories Process
     const main = document.getElementById('main');
     main.textContent = '';
-    document.getElementById('found-news').innerText = `${category.length} News Found For This Category`;
     category.forEach(news => {
         const newsDiv = document.createElement('div');
         newsDiv.classList.add('card', 'mb-5', 'rounded-4', 'border-0', 'shadow-lg');
@@ -21,20 +48,20 @@ const showCategory = category => {
                 </div>
                 <div class="col-md-9">
                     <div class="card-body">
-                        <h3 class="card-title text-secondary">${news.title}</h3>
-                        <p class="card-text text-secondary fs-5 mt-sm-2 mt-md-5">${news.details.slice(0, 202)}...</p>
+                        <h3 class="card-title text-secondary">${news.title ? news.title : 'No Title'}</h3>
+                        <p class="card-text text-secondary fs-5 mt-sm-2 mt-md-5">${news.details ? news.details.slice(0, 202) : 'No Details'}...</p>
                         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-between mt-sm-2 mt-md-5">
                             <div class="d-flex align-items-center justify-content-center
                              mt-4">
                                 <img src="${news.author.img}" class="rounded-circle me-2" alt="Image of author" height="60px" width="60px">
                                 <div>
-                                    <div class="fs-5">${news.author.name}</div>
-                                    <div class="fs-5 text-secondary">${news.author.published_date}</div>
+                                    <div class="fs-5">${news.author.name ? news.author.name : 'Unknown Author'}</div>
+                                    <div class="fs-5 text-secondary">${news.author.published_date ? news.author.published_date : 'Unknown Date'}</div>
                                 </div>
                             </div>
                             <div class="d-flex align-items-center justify-content-center justify-content-between mt-4">
                                 <i class="fa-solid fa-eye fs-4 text-secondary"></i>
-                                <span class="fs-4 text-secondary ms-3">${news.total_view}</span>
+                                <span class="fs-4 text-secondary ms-3">${news.total_view ? news.total_view : 'Unknown View'}</span>
                             </div>
                             <div class="mt-4">
                                 <i class="fa-solid fa-star fs-5 text-secondary"></i>
@@ -74,39 +101,42 @@ const showCategory = category => {
 };
 
 // Category Select Event
-document.getElementById('news').addEventListener('click', function (event) {
-    toogleSpinner(true);
-    const categories = document.getElementsByClassName('remove-class');
-    for (const category of categories) {
-        category.classList.remove('bg-info', 'text-white', 'rounded');
-    }
-    event.target.classList.add('bg-info', 'text-white', 'rounded');
-    document.getElementById('news').classList.remove('bg-info', 'text-white', 'rounded');
-});
+// document.getElementById('news').addEventListener('click', function (event) {
+//     toogleSpinner(true);
+//     const categories = document.getElementsByClassName('remove-class');
+//     for (const category of categories) {
+//         category.classList.remove('bg-info', 'text-white', 'rounded');
+//     }
+//     event.target.classList.add('bg-info', 'text-white', 'rounded');
+//     document.getElementById('news').classList.remove('bg-info', 'text-white', 'rounded');
+// });
 
 // Toogle Spinner Function
-const toogleSpinner = isLoading => {
-    const spinner = document.getElementById('spinner');
-    if (isLoading) {
-        spinner.classList.remove('d-none');
-    }
-    else {
-        spinner.classList.add('d-none');
-    }
-};
+// const toogleSpinner = isLoading => {
+//     const spinner = document.getElementById('spinner');
+//     if (isLoading) {
+//         spinner.classList.remove('d-none');
+//     }
+//     else {
+//         spinner.classList.add('d-none');
+//     }
+// };
 
-loadCategory('01');
 
-// Load Category Details
-const loadCategoryDetails = id => {
-    fetch(`https://openapi.programming-hero.com/api/news/${id}`)
-        .then(res => res.json())
-        .then(data => showCategoryDetails(data.data[0]))
-        .catch(error => console.log(error))
-};
+// // Load Category Details
+// const loadCategoryDetails = id => {
+//     fetch(`https://openapi.programming-hero.com/api/news/${id}`)
+//         .then(res => res.json())
+//         .then(data => showCategoryDetails(data.data[0]))
+//         .catch(error => console.log(error))
+// };
 
-// Show Category Details
-const showCategoryDetails = category => {
-    const id = category.rating;
-    console.log(id);
-};
+// // Show Category Details
+// const showCategoryDetails = category => {
+//     const id = category.rating;
+//     console.log(id);
+// };
+
+// Load Categories Function Call
+// loadCategories();
+
