@@ -29,13 +29,13 @@ const showCategory = category => {
     document.getElementById('found-news').innerText = `${category.length} News Found For This Category`;
     category.forEach(news => {
         const newsDiv = document.createElement('div');
-        newsDiv.classList.add('card', 'mb-5', 'rounded-4');
+        newsDiv.classList.add('card', 'mb-5', 'rounded-4', 'border-0', 'shadow-lg');
         newsDiv.innerHTML = `
             <div class="row g-0 p-4">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <img src="${news.thumbnail_url}" class="h-100 w-100 rounded-start" alt="Image of thumbnail">
                 </div>
-                <div class="col-md-8 py-sm-2 py-md-5">
+                <div class="col-md-9">
                     <div class="card-body">
                         <h3 class="card-title text-secondary">${news.title}</h3>
                         <p class="card-text text-secondary fs-5 mt-sm-2 mt-md-5">${news.details.slice(0, 202)}...</p>
