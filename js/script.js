@@ -81,4 +81,4 @@ document.getElementById('news').addEventListener('click', function (event) {
     document.getElementById('news').classList.remove('bg-info', 'text-white', 'rounded');
 });
 
-loadCategory('01');
+// loadCategory('01');
