@@ -13,6 +13,8 @@ loadCategories();
 const showCategories = categories => {
     const newsContainer = document.getElementById('news');
     categories.forEach(news => {
+        console.log(`${news.category_id}`);
+        console.log(`${news.category_name}`);
         const li = document.createElement('li');
         li.classList.add('nav-item');
         li.innerHTML = `
@@ -149,3 +151,5 @@ const showCategoryDetails = category => {
     `;
 };
 
+// Show Default Category
+loadCategory('01', 'Breaking News');
